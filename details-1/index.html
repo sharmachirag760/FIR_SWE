@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accused Details</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Special+Elite&display=swap');
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src=
+    "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
+          </script>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Accused Details :</h1>
+        <form  action="https://formspree.io/f/xnnqvqdn"
+        method="POST">
+            <div class="form-section">
+                <div class="personal-details">
+                    <h2>Personal Details :</h2>
+                    <div class="form-group">
+                        <label for="first-name">First Name :</label>
+                        <input type="text" id="first-name" name="first-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name :</label>
+                        <input type="text" id="last-name" name="last-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth :</label>
+                        <input type="date" id="dob" name="dob">
+                    </div>
+                    <div class="form-group">
+                        <label for="father-name">Father's Name :</label>
+                        <input type="text" id="father-name" name="father-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="mother-name">Mother's Name :</label>
+                        <input type="text" id="mother-name" name="mother-name">
+                    </div>
+                    <div class="form-group wide">
+                        <label for="address">Permanent Address :</label>
+                        <textarea id="address" name="address"></textarea>
+                    </div>
+                </div>
+                <div class="complaint-form">
+                    <h2>Complaint Form :</h2>
+                    <div class="form-group-inline">
+                        <div>
+                            <input type="text" id="state" name="state" placeholder="State (of crime)">
+                        </div>
+                        <div>
+                            <input type="text" id="city" name="city" placeholder="City (of crime)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location :</label>
+                        <input type="text" id="location" name="location">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date :</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time :</label>
+                        <input type="time" id="time" name="time">
+                    </div>
+                    <div class="form-group wide">
+                        <label for="complaint">Describe the Complaint :</label>
+                        <textarea id="complaint" name="complaint"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="buttons-last">
+                <button type="reset">RESET</button>
+                <button type="submit">Submit Rapid FIR (Paid)</button>
+                <input class="button" type="button" 
+                value="Submit Normally (free)" 
+                onclick="getContentInPDF()">
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        function getContentInPDF() {
+            // Access form elements
+            let a = document.getElementById('first-name').value;
+            let b = document.getElementById('last-name').value;
+            let c = document.getElementById('dob').value;
+            let d = document.getElementById('father-name').value;
+            let e = document.getElementById('mother-name').value;
+            let f = document.getElementById('address').value;
+            let g = document.getElementById('state').value;
+            let h = document.getElementById('city').value;
+            let i = document.getElementById('location').value;
+            let j = document.getElementById('date').value;
+            let k = document.getElementById('time').value;
+            let l = document.getElementById('complaint').value;
+
+            // Create a single HTML element by adding form data
+            let element = document.createElement('div');
+            element.innerHTML = '<h1>Form Data</h1>' +
+                '<p>First Name: ' + a + '</p>' +
+                '<p>Last Name: ' + b + '</p>'+
+                '<p>DOB: ' + c + '</p>'+
+                '<p>Father Name: ' + d + '</p>'+
+                '<p>Mother Name: ' + e + '</p>'+
+                '<p>Permanent Address:' + f + '</p>'+
+                '<p>State: ' + g + '</p>'+
+                '<p>City: ' + h + '</p>'+
+                '<p>Location: ' + i + '</p>'+
+                '<p>Date: ' + j + '<p>'+
+                '<p>time: ' + k + '</p>'+
+                '<p>Complain: ' + l + '</p>'
+                ;
+            html2pdf().from(element).save();
+        }
+    </script>
+
+</body>
+</html>
